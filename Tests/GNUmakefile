@@ -19,6 +19,8 @@ xcode_tests_OBJC_FILES = \
 
 xcode_tests_TOOL_LIBS += -lXCode
 xcode_tests_LIB_DIRS += -L../XCode/XCode.framework/Versions/0
+xcode_tests_LIB_DIRS += -L/Developer/Link
+xcode_tests_LDFLAGS  += -Wl,-rpath,/Developer/Link
 xcode_tests_INCLUDE_DIRS += -I.. -I../Tools/buildtool
 
 check:: all
