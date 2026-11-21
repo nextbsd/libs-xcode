@@ -255,7 +255,7 @@
   if ([url isFileURL] && [extension isEqual: @"pcproj"])
     return @"YCodeProjectCenterProjectType";
   if ([YCodeProject isProjectDirectory: [url path]])
-    return @"YCodeMakeProjectType";
+    return @"YCodeXcodeProjectType";
   return [super typeForContentsOfURL: url error: error];
 }
 
