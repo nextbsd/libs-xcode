@@ -10,16 +10,16 @@
    This application is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
    License as published by the Free Software Foundation; either
-   version 3 of the License, or (at your option) any later version.
+   version 2 of the License, or (at your option) any later version.
 
    This application is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   General Public License for more details.
+   Library General Public License for more details.
 
    You should have received a copy of the GNU General Public
-   License along with this application; if not, see
-   <https://www.gnu.org/licenses/>.
+   License along with this library; if not, write to the Free
+   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111 USA.
 */
 
 #import "YCodeDocumentController.h"
@@ -249,13 +249,10 @@
 
 - (NSString *) typeForContentsOfURL: (NSURL *)url error: (NSError **)error
 {
-  NSString *extension = [[[url path] pathExtension] lowercaseString];
-  if ([url isFileURL] && [extension isEqual: @"xcodeproj"])
-    return @"YCodeXcodeProjectType";
-  if ([url isFileURL] && [extension isEqual: @"pcproj"])
-    return @"YCodeProjectCenterProjectType";
-  if ([YCodeProject isProjectDirectory: [url path]])
-    return @"YCodeXcodeProjectType";
+  if ([YCodeProject isProjectDirectory: [url path]]
+      && ![[NSArray arrayWithObjects: @"xcodeproj", @"pcproj", nil]
+          containsObject: [[url path] pathExtension]])
+    return @"YCodeMakeProjectType";
   return [super typeForContentsOfURL: url error: error];
 }
 
