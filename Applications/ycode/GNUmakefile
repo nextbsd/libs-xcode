@@ -41,6 +41,8 @@ Ycode_APPLICATION_ICON = Ycode.tiff
 #
 Ycode_GUI_LIBS += -lXCode
 Ycode_LIB_DIRS += -L../../XCode/XCode.framework/Versions/0
+Ycode_LIB_DIRS += -L/Developer/Link
+Ycode_LDFLAGS  += -Wl,-rpath,/Developer/Link
 
 # Additional include directories
 ADDITIONAL_INCLUDE_DIRS += -I../..
